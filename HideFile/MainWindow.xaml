@@ -19,12 +19,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
-            <Label>Entrez le chemin d'une image</Label>
-            <TextBox Grid.Column="1" Name="ImagePath"></TextBox>
-            <Button Grid.Column="2" Name="ImageButton" Click="ImageButton_Click">...</Button>
-            <Label Grid.Row="1">Entrez le chemin d'un fichier zip à cacher</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="FilePath"></TextBox>
-            <Button Grid.Row="1" Grid.Column="2" Name="FileButton" Click="FileButton_Click">...</Button>
+            <Label Grid.Row="1">Entrez le chemin d'une image</Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="ImagePath"></TextBox>
+            <Button Grid.Row="1" Grid.Column="2" Name="ImageButton" Click="ImageButton_Click">...</Button>
+            <Label >Entrez le chemin d'un fichier zip à cacher</Label>
+            <TextBox  Grid.Column="1" Name="FilePath"></TextBox>
+            <Button  Grid.Column="2" Name="FileButton" Click="FileButton_Click">...</Button>
             <Label Grid.Row="2">Entrez le chemin du dossier de sortie</Label>
             <TextBox Grid.Row="2" Grid.Column="1" Name="FolderPath"></TextBox>
             <Button Grid.Row="2" Grid.Column="2" Name="FolderButton" Click="FolderButton_Click">...</Button>

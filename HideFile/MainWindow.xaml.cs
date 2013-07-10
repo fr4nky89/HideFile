@@ -25,6 +25,7 @@ namespace HideFile
 
         private string imagePath;
         private string zipPath;
+        private string secretImagePath;
 
         public MainWindow()
         {
@@ -78,8 +79,13 @@ namespace HideFile
                 // Open document
                 ImagePath.Text = ofd.FileName;
                 string[] filename = ofd.FileName.Split('\\');
-                int i = filename.Length - 1;
-                ImageName.Text = filename[i] ;
+                ImageName.Text = "secret_" + filename[filename.Length - 1] ;
+                for (int i = 0; i < (filename.Length - 1); i++ )
+                {
+                    FolderPath.Text += filename[i] + "\\";
+                }
+                    
+                    
             }
         }
 
