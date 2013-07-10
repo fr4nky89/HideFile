@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Windows.Forms;
+using System.Diagnostics;
 namespace HideFile
 {
     /// <summary>
@@ -78,12 +79,9 @@ namespace HideFile
             {
                 // Open document
                 ImagePath.Text = ofd.FileName;
-                string[] filename = ofd.FileName.Split('\\');
-                ImageName.Text = "secret_" + filename[filename.Length - 1] ;
-                for (int i = 0; i < (filename.Length - 1); i++ )
-                {
-                    FolderPath.Text += filename[i] + "\\";
-                }
+                ImageName.Text = "secret_" + System.IO.Path.GetFileName(ofd.FileName);
+                FolderPath.Text += System.IO.Path.GetDirectoryName(ofd.FileName);
+                
                     
                     
             }
@@ -91,7 +89,61 @@ namespace HideFile
 
         private void ValidationButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            imagePath = ImagePath.Text;
+            secretImagePath = FolderPath.Text + "\\" + ImageName.Text;
+            zipPath = FilePath.Text;
+
+            //Ecriture d'octets dans le fichier
+            var bw = new BinaryWriter(File.Create(secretImagePath));
+            bw.Write(File.ReadAllBytes(imagePath));
+            bw.Write(File.ReadAllBytes(zipPath));
+            bw.Close();
+
+            if (LaunchFolderView(secretImagePath) == false)
+                System.Windows.MessageBox.Show("erreur dans la création du fichier ");
+
         }
+
+        private bool LaunchFolderView(string Filename)
+        {
+            bool result = false;
+
+            // Check the file exists
+            if (File.Exists(Filename))
+            {
+                // Check the folder we get from the file exists
+                // this function would just get "C:\Hello" from
+                // an input of "C:\Hello\World.txt"
+                string folder = System.IO.Path.GetDirectoryName(Filename);
+
+                // Check the folder exists
+                if (Directory.Exists(folder))
+                {
+                    try
+                    {
+                        // Start a new process for explorer
+                        // in this location     
+                        ProcessStartInfo psi = new ProcessStartInfo();
+                        psi.FileName = "explorer";
+                        psi.Arguments = string.Format("/root,{0} /select,{1}", folder, Filename);
+                        psi.UseShellExecute = true;
+
+                        Process newProcess = new Process();
+                        newProcess.StartInfo = psi;
+                        newProcess.Start();
+
+                        // No error
+                        result = true;
+                    }
+                    catch (Exception exception)
+                    {
+                        throw new Exception("Error in 'LaunchFolderView'.", exception);
+                    }
+                }
+            }
+
+            return result;
+        }
+
     }
 }
