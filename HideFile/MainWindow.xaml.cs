@@ -143,5 +143,13 @@ namespace HideFile
             this.Close();
         }
 
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            FilePath.Text = "";
+            ImagePath.Text = "";
+            ImageName.Text = "";
+            FolderPath.Text = "";
+        }
+
     }
 }
