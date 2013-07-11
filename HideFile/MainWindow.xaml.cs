@@ -85,14 +85,19 @@ namespace HideFile
                 secretImagePath += "." + System.IO.Path.GetExtension(imagePath);
 
             //Ecriture d'octets dans le fichier
-            var bw = new BinaryWriter(File.Create(secretImagePath));
-            bw.Write(File.ReadAllBytes(imagePath));
-            bw.Write(File.ReadAllBytes(zipPath));
-            bw.Close();
-
-            if (LaunchFolderView(secretImagePath) == false)
-                System.Windows.MessageBox.Show("erreur dans la création du fichier ");
-
+            try
+            {
+                var bw = new BinaryWriter(File.Create(secretImagePath));
+                bw.Write(File.ReadAllBytes(imagePath));
+                bw.Write(File.ReadAllBytes(zipPath));
+                bw.Close();
+                LaunchFolderView(secretImagePath);
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+                return;
+            }
         }
 
         private bool LaunchFolderView(string Filename)
