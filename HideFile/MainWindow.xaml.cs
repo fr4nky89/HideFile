@@ -135,7 +135,7 @@ namespace HideFile
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            new Aboutbox().ShowDialog();
         }
 
     }
