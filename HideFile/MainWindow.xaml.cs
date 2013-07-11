@@ -81,6 +81,9 @@ namespace HideFile
             secretImagePath = FolderPath.Text + "\\" + ImageName.Text;
             zipPath = FilePath.Text;
 
+            if (System.IO.Path.GetExtension(secretImagePath) == "")
+                secretImagePath += "." + System.IO.Path.GetExtension(imagePath);
+
             //Ecriture d'octets dans le fichier
             var bw = new BinaryWriter(File.Create(secretImagePath));
             bw.Write(File.ReadAllBytes(imagePath));
