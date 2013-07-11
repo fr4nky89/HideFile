@@ -113,7 +113,7 @@ namespace HideFile
                         // in this location     
                         ProcessStartInfo psi = new ProcessStartInfo();
                         psi.FileName = "explorer";
-                        psi.Arguments = string.Format("/root,{0} /select,{1}", folder, Filename);
+                        psi.Arguments = "/select," + Filename;
                         psi.UseShellExecute = true;
 
                         Process newProcess = new Process();
@@ -131,6 +131,11 @@ namespace HideFile
             }
 
             return result;
+        }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }
