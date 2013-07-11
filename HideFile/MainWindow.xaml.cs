@@ -138,5 +138,10 @@ namespace HideFile
             new Aboutbox().ShowDialog();
         }
 
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
