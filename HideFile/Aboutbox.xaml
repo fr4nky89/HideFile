@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="A propos" Height="200" Width="300">
     <Grid>
-        <StackPanel>
-            <TextBlock Name="AppName"/>
-            <TextBlock Name="Version"/>
-            <TextBlock Name="Author"/>
+        <StackPanel Margin="10">
+            <TextBlock Name="AppName" FontSize="20"/>
+            <TextBlock Name="Version" FontSize="16"/>
+            <TextBlock Name="Author" FontSize="16"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="50" >
             <Button Margin="10" Width="100" Name="OkButton" Click="OkButton_Click" >Ok</Button>

@@ -26,8 +26,8 @@ namespace HideFile
             Assembly assem = Assembly.GetExecutingAssembly();
             AssemblyName assemName = assem.GetName();
             AppName.Text = assemName.Name;
-            Version.Text = assemName.Version.Major + "." + assemName.Version.Minor;
-            Author.Text = "Fr4nky89";
+            Version.Text = "Version: " + assemName.Version.Major + "." + assemName.Version.Minor;
+            Author.Text = "Auteur: Fr4nky89";
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
