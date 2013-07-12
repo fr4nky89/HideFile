@@ -10,7 +10,7 @@
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right"  Height="50">
             <Button Margin="10" Width="100"  Name="ValidationButton" Click="ValidationButton_Click">Créer</Button>
             <Button Margin="10" Width="100" Name="ResetButton" Click="ResetButton_Click">Reset</Button>
-            <Button Margin="10" Width="100" Name="CancelButton" Click="CancelButton_Click">Annuler</Button>
+            <Button Margin="10" Width="100" Name="CancelButton" Click="CancelButton_Click">Fermer</Button>
             <Button Margin="10" Width="100" Name="AboutButton" Click="AboutButton_Click">A propos</Button>
         </StackPanel>
         <Grid Margin="0,20,0,0">
