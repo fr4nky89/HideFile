@@ -43,7 +43,7 @@ namespace HideFile
         private void FolderButton_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.RootFolder = Environment.SpecialFolder.CommonPictures;
+            fbd.RootFolder = Environment.SpecialFolder.MyPictures;
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 FolderPath.Text = fbd.SelectedPath;
 
@@ -68,7 +68,7 @@ namespace HideFile
                 // Open document
                 ImagePath.Text = ofd.FileName;
                 ImageName.Text = "secret_" + System.IO.Path.GetFileName(ofd.FileName);
-                FolderPath.Text += System.IO.Path.GetDirectoryName(ofd.FileName);
+                if(FolderPath.Text == "") FolderPath.Text = System.IO.Path.GetDirectoryName(ofd.FileName);
                 
                     
                     
@@ -87,6 +87,17 @@ namespace HideFile
             //Ecriture d'octets dans le fichier
             try
             {
+                if(!Directory.Exists(System.IO.Path.GetDirectoryName(secretImagePath)))
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(System.IO.Path.GetDirectoryName(secretImagePath));
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show(ex.Message);
+                    }
+                }
                 var bw = new BinaryWriter(File.Create(secretImagePath));
                 bw.Write(File.ReadAllBytes(imagePath));
                 bw.Write(File.ReadAllBytes(zipPath));
@@ -96,6 +107,7 @@ namespace HideFile
             catch(Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                if (File.Exists(secretImagePath)) File.Delete(secretImagePath);
                 return;
             }
         }
